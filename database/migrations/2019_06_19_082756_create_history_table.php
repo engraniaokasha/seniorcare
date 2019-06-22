@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmergencyTable extends Migration
+class CreateHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateEmergencyTable extends Migration
      */
     public function up()
     {
-        Schema::create('emergency', function (Blueprint $table) {
+        Schema::create('history', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('patients');
-            $table->integer('voice');
-            $table->integer('sensor');
-            $table->integer('button');
-            $table->integer('confirmed');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->text('history');
+
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateEmergencyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emergency');
+        Schema::dropIfExists('history');
     }
 }

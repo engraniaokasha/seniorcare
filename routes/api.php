@@ -22,6 +22,7 @@ Route::prefix('v1')->group(function(){
     Route::post('register', 'Api\AuthController@register');
     Route::post('addpatient', 'Api\AuthController@addpatient');
     Route::post('getemergency', 'Api\AuthController@getemergency');
+    Route::post('gethistory', 'Api\AuthController@history');
 
     Route::group(['middleware' => 'auth:api'], function(){
      Route::post('getUser', 'Api\AuthController@getUser');

@@ -9,6 +9,6 @@ class Patient extends Model
 {
     use HasApiTokens;
     protected $fillable = [
-        'name', 'age',
+        'name', 'age','image',
     ];
 }

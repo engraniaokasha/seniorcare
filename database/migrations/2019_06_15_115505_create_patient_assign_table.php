@@ -19,6 +19,7 @@ class CreatePatientAssignTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('patients');
+           
             $table->timestamps();
         });
     }

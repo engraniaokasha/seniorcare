@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index', function () {
-    return view('index');
-});
+    return view('show');
+});*/
