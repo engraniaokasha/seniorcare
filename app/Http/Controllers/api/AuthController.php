@@ -77,7 +77,13 @@ class AuthController extends Controller
       public function getpatients() {
          $user = Auth::user();
          $allpatients=\DB::table('patient_assign')->where('user_id',$user->id)->get();
-         return response()->json(['success' => $allpatients,$ids], $this->successStatus); 
+          foreach($allpatients as $patient)
+            {
+             $result= \DB::table('patients')->where('id',$patient->patient_id)->get();
+            }
+
+              return response()->json(['patients'=>$result], $this->successStatus); 
+         
          }
 
          public function history (Request $request)
@@ -85,5 +91,12 @@ class AuthController extends Controller
             $id=$request->patient_id;
             $history = \DB::table('history')->where('patient_id',$id)->get();
             return response()->json(['success' => $history], $this->successStatus); 
+         }
+
+         public function getpatient(request $request)
+         {
+            $patient=\DB::table('patients')->where('id',$request->id)->get();
+            
+            return response()->json(['success' => $patient], $this->successStatus); 
          }
 }

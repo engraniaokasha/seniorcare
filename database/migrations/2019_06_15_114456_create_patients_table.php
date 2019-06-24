@@ -17,7 +17,7 @@ class CreatePatientsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('age');
-            $table->string('image');
+           
           //  $table->unsignedBigInteger('room_id');
            // $table->foreign('room_id')->references('room_number')->on('rooms');
             $table->timestamps();
