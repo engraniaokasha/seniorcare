@@ -11,13 +11,6 @@
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/index', function () {
-    return view('show');
-});*/
-Route::get('test', function () {
-    event(new App\Events\StatusLiked('Someone'));
-    return "Event has been sent!";
 });

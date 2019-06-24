@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Providers;
-use App\Emergency;
-use App\Observers\EmergencyObserver;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
 
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
-        Emergency::observe(EmergencyObserver::class);
+        //
     }
 }
