@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 use Storage;
 
-class AuthController extends Controller 
+class ApiController extends Controller 
 {
  public $successStatus = 200;
 
@@ -21,13 +21,13 @@ class AuthController extends Controller
                  'usertype' => 'required',  
                  'c_password' => 'required', 
        ]);   
-    if ($validator->fails()) {          
-          return response()->json(['error'=>$validator->errors()], 401);                        }    
-    $input = $request->all();  
-    $input['password'] = bcrypt($input['password']);
-    $user = User::create($input); 
-    $success['token'] =  $user->createToken('AppName')->accessToken;
-    return response()->json(['success'=>$success], $this->successStatus); 
+         if ($validator->fails()) {          
+               return response()->json(['error'=>$validator->errors()], 401);                        }    
+         $input = $request->all();  
+         $input['password'] = bcrypt($input['password']);
+         $user = User::create($input); 
+         $success['token'] =  $user->createToken('AppName')->accessToken;
+         return response()->json(['success'=>$success], $this->successStatus); 
    }
     
      
@@ -53,6 +53,7 @@ class AuthController extends Controller
       $validator = Validator::make($request->all(), [ 
                    'name' => 'required',
                    'age' => 'required',
+                   'room_id'=>'required',
          ]);   
       if ($validator->fails()) {          
             return response()->json(['error'=>$validator->errors()], 401);                        }    
@@ -61,10 +62,6 @@ class AuthController extends Controller
       return response()->json(['patient'=>$patient], $this->successStatus); 
      }
 
-     /*public function getallpatients(){
-      $patients =Patient::all();
-      return response()->json(['success' => $patients], $this->successStatus); 
-     }*/
 
      public function getemergency(Request $request)
       { 
@@ -86,14 +83,14 @@ class AuthController extends Controller
          
          }
 
-         public function history (Request $request)
+       public function history (Request $request)
          {        
             $id=$request->patient_id;
             $history = \DB::table('history')->where('patient_id',$id)->get();
             return response()->json(['success' => $history], $this->successStatus); 
          }
 
-         public function getpatient(request $request)
+      public function getpatient(request $request)
          {
             $patient=\DB::table('patients')->where('id',$request->id)->get();
             
